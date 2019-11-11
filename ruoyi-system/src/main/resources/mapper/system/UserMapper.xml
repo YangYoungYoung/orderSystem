@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.UserMapper">
+
+
+    <select id="selectUser" resultType="com.ruoyi.system.domain.User">
+        select * from
+        t_user
+        where
+        username= #{userName} and password=#{password}
+    </select>
+
+    <select id="findAll" resultType="com.ruoyi.system.domain.User">
+        select * from t_user
+    </select>
+
+    <delete id="deleteById">
+        delete from t_user where id=#{userId}
+    </delete>
+
+    <insert id="add">
+        insert into t_user(username,password,sid,usertype)
+        value (#{userName},#{password},#{sid},#{userType})
+    </insert>
+
+    <select id="seletewaitrt" resultType="com.ruoyi.system.domain.User" parameterType="java.lang.Integer">
+        select * from
+        t_user
+        where
+        sid=#{shopId}
+    </select>
+
+    <select id="seleteOne" resultType="java.lang.Integer">
+        select *from
+        t_user
+        where
+        username=#{waitername}
+    </select>
+
+
+    <insert id="insertwaiter" parameterType="java.lang.Integer">
+        insert into
+        t_user
+        (username,password,sid)
+        value
+        (#{userName},#{password},#{shopId})
+    </insert>
+
+    <update id="updatewaiter">
+        update
+        t_user
+        set
+        username=#{waitername},password=#{waiterword}
+        where
+       id=#{userId}
+    </update>
+
+    <select id="finboss" resultType="java.lang.Integer">
+    select * from
+    t_user
+    where
+    username=#{username},password=#{password}
+</select>
+
+    <select id="insertwaiterone" resultType="java.lang.Integer">
+    select * from
+    t_user
+    where
+    username=#{username};
+</select>
+
+    <insert id="inswaiter" >
+        insert into t_user
+        (username,password,sid)
+        values
+        (#{userName},#{password},#{shopId})
+    </insert>
+
+    <delete id="deletewaiter">
+        delete from
+        t_user
+        where
+        id=#{userId}
+    </delete>
+
+    <insert id="insertBoss">
+    insert into t_user
+(username,password,usertype,sid)
+    value
+(#{userName},#{password},#{userType},#{shopId})
+</insert>
+
+    <select id="allfinboss" resultType="com.ruoyi.system.domain.User">
+        select * from
+        t_user
+        where
+        userType=#{userType}
+    </select>
+
+<select id="finallboss" resultType="com.ruoyi.system.domain.User">
+    select * from
+    t_user
+    where
+    id=#{userId}
+</select>
+
+    <select id="selectName" resultType="java.lang.Integer">
+        select  count(username) from t_user where username=#{userName};
+    </select>
+
+</mapper>

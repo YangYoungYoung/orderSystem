@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.ShopMapper">
+
+	<update id="updateshops" >
+   update  t_shop set address=#{shopaddress},wifi=#{shopwifi}, phone=#{shopphone}, details=#{shopdetails}, banner=#{shopbanner} where name=#{shopName}
+</update>
+
+	<select id="finselectshopone" resultType="com.ruoyi.system.domain.Shop">
+select * from
+t_shop
+where id=#{shopId} and name=#{shopName}
+</select>
+<select id="finselectshop" resultType="com.ruoyi.system.domain.Shop" parameterType="java.lang.Integer">
+	select * from
+	t_shop
+	where
+	id=#{shopId}
+</select>
+
+    <insert id="addShop">
+	insert  into  t_shop (
+	name, avatar, address, wifi, phone, longitude, latitude,orgNo,mercId,trmNo,appId,secret
+	)value (
+	#{shopName},#{avatar},#{shopaddress},#{shopwifi},#{shopphone},#{longitude},#{latitude},#{orgNo},#{mercId},#{trmNo},#{appId},#{secret}
+	)
+    </insert>
+<select id="Allselect" resultType="com.ruoyi.system.domain.Shop" parameterType="java.lang.Integer">
+	SELECT * FROM
+	t_shop
+	where
+	id=#{shoppId}
+</select>
+	<select id="selectAll" resultType="com.ruoyi.system.domain.Shop">
+		select  * from t_shop
+	</select>
+
+	<select id="shopDetails" resultType="com.ruoyi.system.domain.Shop">
+		select  * from t_shop  where id=#{id}
+	</select>
+
+	<update id="updateShop">
+		update  t_shop as s set
+		s.wifi=#{wifi},
+		s.name=#{name},
+		s.phone=#{phone},
+		s.address=#{address},
+		s.details=#{details},
+		s.banner=#{banner}
+		where s.id=#{id}
+	</update>
+
+	<delete id="deleteShop">
+		delete  from  t_shop where  id=#{id}
+	</delete>
+
+</mapper>
+
+
+
+
+
+
+
+

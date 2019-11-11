@@ -1,0 +1,21 @@
+
+.col-md-12 column{
+    border:none;
+
+}
+.table table-bordered table-condensed{
+    border-collapse:collapse;
+    border:none;
+}
+.table-td{
+    text-align:center;
+}
+.table-item{
+     width: 150px;
+     height: 60px;
+     background-color: #10a6b4;
+     text-align:center;
+     line-height:60px;
+     padding:10px 15px;
+     color:#fff;
+ }

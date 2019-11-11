@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.BossMapper">
+<!--	日-->
+	<select id="selectpresent"  resultType="java.lang.Double">
+	SELECT sum(totalPrice) FROM
+	t_order
+	WHERE
+	TO_DAYS(orderTime) = TO_DAYS(NOW()) and sid=#{shopId} and status=1
+	</select>
+<!--	周-->
+	<select id="selectweek"  resultType="java.lang.Double">
+		SELECT SUM(totalPrice) FROM
+		t_order
+		WHERE
+		YEARWEEK(DATE_FORMAT(orderTime,'%Y-%m-%d')) = YEARWEEK(NOW()) and sid=#{shopId} and status=1
+	</select>
+<!--	月-->
+	<select id="selectmonth"  resultType="java.lang.Double">
+		SELECT SUM(totalPrice)  FROM
+		 t_order
+		 WHERE
+		 DATE_FORMAT(orderTime, '%Y%m' ) = DATE_FORMAT( CURDATE( ) , '%Y%m' ) and sid=#{shopId} and status=1
+	</select><select id="selectboss" resultType="com.ruoyi.system.domain.User" parameterType="java.lang.Integer">
+	 select * from
+	 t_user
+	 where
+	 usertype= 1
+ </select>
+
+	<update id="updateBoss">
+	update
+	t_user
+	set
+	username=#{userName},password=#{password}
+	where
+	id=#{userId}
+</update>
+
+	<!--	单个boss通过账户密码查询查询-->
+	<select id="selectfll" resultType="java.lang.Integer">
+		select * from
+		t_user
+		where
+		username=#{userName},password=#{password}
+	</select>
+
+
+<!--	月SELECT SUM(totalPrice) FROM t_order WHERE TO_DAYS( NOW( ) ) - TO_DAYS( orderTime) <= 30-->
+
+	<!--	周SELECT SUM(totalPrice) FROM t_order WHERE TO_DAYS( NOW( ) ) - TO_DAYS( orderTime) <= 7-->
+
+    <select id="getEnaringToday" resultType="java.lang.Double">
+		select sum(totalPrice) from t_order
+		where
+		status=1  and  sid=#{shopId}
+		and  to_days(payTime) = to_days(now())
+-- 		GROUP BY sid DESC
+	</select>
+
+    <select id="getEnaringMonth" resultType="java.lang.Double">
+		select sum(totalPrice) from t_order
+		where status=1 and  sid=#{shopId}
+		and   DATE_FORMAT( payTime, '%Y%m' ) = DATE_FORMAT( CURDATE( ) ,'%Y%m' )
+	</select>
+
+    <select id="getEnaringWeek" resultType="java.lang.Double">
+		select sum(totalPrice) from t_order
+		where status=1 and  sid=#{shopId}
+			and  YEARWEEK( date_format(  payTime,'%Y-%m-%d' ) ) = YEARWEEK( now() )
+	</select>
+
+
+
+
+</mapper>
+
+
+
+
+
+
+
+

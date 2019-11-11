@@ -1,0 +1,50 @@
+html,body{
+    width:100%;
+    height:100%;
+}
+/*设置了背景图片自适应*/
+body{
+    background:url("../images/login_bg.jpg") no-repeat;
+    background-size: 100% 100%;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+.title{
+    font-size: 42px;
+}
+.form-group{
+    display: flex;
+    flex-direction: row;
+    width: 441px;
+    height: 72px;
+    align-items: center;
+    padding-left: 40px;
+}
+
+.col-sm-10{
+    margin-left: 20px;
+}
+
+.form-control{
+    width: 280px;
+    height: 40px;
+}
+.btn{
+    width: 280px;
+    height: 50px;
+    background-color: #0899d5;
+    color: #fff;
+    border: none;
+    font-size: 1.2rem;
+    text-align: center;
+    margin-left: 50px;
+}
+
+.btn::after{
+    border: none;
+}
